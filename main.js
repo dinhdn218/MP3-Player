@@ -94,7 +94,7 @@ window.addEventListener("load", function () {
       // Cập nhật đường dẫn bài hát vào audio tag
       audio.src = song.path;
       // Callback để lấy được audio.duration của bài hát hiện tại, hiển thị khi chương trình vừa bắt đầu
-      setTimeout(callback, 500);
+      setTimeout(callback, 1000);
     },
 
     // Hàm định dạng lại thời gian theo định dạng mm:ss
