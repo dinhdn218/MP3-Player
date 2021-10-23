@@ -79,7 +79,8 @@ window.addEventListener("load", function () {
     ],
 
     // Hàm render bài hát hiện tại (Khi chương trình bắt đầu sẽ render bài hát đầu tiên trong mảng))
-    renderCurrentSong: function (index, callback) {
+    renderCurrentSong: function (index) {
+      const me = this;
       const song = this.songs[index];
       const html = `<img
           src="${song.image}"
@@ -92,9 +93,12 @@ window.addEventListener("load", function () {
       songCurrent.innerHTML = html;
 
       // Cập nhật đường dẫn bài hát vào audio tag
-      audio.src = song.path;
-      // Callback để lấy được audio.duration của bài hát hiện tại, hiển thị khi chương trình vừa bắt đầu
-      setTimeout(callback, 100);
+      setTimeout(function () {
+        audio.setAttribute("src", song.path);
+        setTimeout(function () {
+          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        }, 100);
+      }, 100);
     },
 
     // Hàm định dạng lại thời gian theo định dạng mm:ss
@@ -126,11 +130,7 @@ window.addEventListener("load", function () {
         this.currentIndex = 0;
       }
       // Load bài hát và tổng thời gian của bài hát
-      this.renderCurrentSong(this.currentIndex, function () {
-        do {
-          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        } while (!audio.duration);
-      });
+      this.renderCurrentSong(this.currentIndex);
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
       // Thêm màu cho bài hát hiện tại
@@ -153,11 +153,7 @@ window.addEventListener("load", function () {
         this.currentIndex = this.songs.length - 1;
       }
       // Load bài hát và tổng thời gian của bài hát
-      this.renderCurrentSong(this.currentIndex, function () {
-        do {
-          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        } while (!audio.duration);
-      });
+      this.renderCurrentSong(this.currentIndex);
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
       // Thêm màu cho bài hát hiện tại
@@ -180,11 +176,7 @@ window.addEventListener("load", function () {
         this.currentIndex = Math.floor(Math.random() * this.songs.length);
       } while (currentIndex === this.currentIndex);
       // Load bài hát và tổng thời gian của bài hát
-      this.renderCurrentSong(this.currentIndex, function () {
-        do {
-          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        } while (!audio.duration);
-      });
+      this.renderCurrentSong(this.currentIndex);
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
       // Thêm màu cho bài hát hiện tại
@@ -371,11 +363,7 @@ window.addEventListener("load", function () {
           const index = e.target.dataset.index;
           me.highlightSongSelected(index);
           me.scrollToActiveSong();
-          me.renderCurrentSong(index, function () {
-            do {
-              totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-            } while (!audio.duration);
-          });
+          me.renderCurrentSong(index);
           audio.play();
         }
       });
@@ -403,11 +391,7 @@ window.addEventListener("load", function () {
     start: function () {
       let me = this;
       this.renderListSong();
-      this.renderCurrentSong(this.currentIndex, function () {
-        do {
-          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        } while (!audio.duration);
-      });
+      this.renderCurrentSong(this.currentIndex);
       this.handleEvent();
     },
   };
