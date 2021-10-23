@@ -1,0 +1,15 @@
+html {
+  font-size: 62.5%;
+  font-family: "Roboto Mono", monospace;
+  color: #9a9ea6;
+}
+
+body {
+  font-size: 1.4rem;
+}
+
+button,
+input {
+  font-family: "Roboto Mono", monospace;
+  font-size: 1.4rem;
+}

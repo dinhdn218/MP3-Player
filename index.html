@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MP3 Player</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./app.css" />
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+  <body>
+    <div class="app">
+      <i class="fas fa-bars toggle-icon"></i>
+      <div class="song-current"></div>
+      <div class="timer">
+        <span class="time-current">00:00</span>
+        <input
+          id="progressBar"
+          type="range"
+          name=""
+          min="0"
+          max="100"
+          value="0"
+          step="0.01"
+        />
+        <audio class="audio" src=""></audio>
+        <span class="time-total">04:35</span>
+      </div>
+      <div class="player">
+        <i
+          class="fas fa-redo-alt player-repeat-icon"
+          data-tooltip="Lặp lại bài hát"
+        ></i>
+        <i class="fas fa-step-backward player-prev-icon"></i>
+        <i class="fas fa-play player-play-icon"></i>
+        <i class="fas fa-step-forward player-next-icon"></i>
+        <i
+          class="fas fa-random player-random-icon"
+          data-tooltip="Phát ngẫu nhiên"
+        ></i>
+      </div>
+      <ul class="song-list"></ul>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
