@@ -93,12 +93,10 @@ window.addEventListener("load", function () {
       songCurrent.innerHTML = html;
 
       // Cập nhật đường dẫn bài hát vào audio tag
+      audio.setAttribute("src", song.path);
       setTimeout(function () {
-        audio.setAttribute("src", song.path);
-        setTimeout(function () {
-          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        }, 100);
-      }, 100);
+        totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+      }, 200);
     },
 
     // Hàm định dạng lại thời gian theo định dạng mm:ss
