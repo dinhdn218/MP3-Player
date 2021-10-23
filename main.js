@@ -127,9 +127,9 @@ window.addEventListener("load", function () {
       }
       // Load bài hát và tổng thời gian của bài hát
       this.renderCurrentSong(this.currentIndex, function () {
-        if (audio.duration) {
+        do {
           totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        }
+        } while (!audio.duration);
       });
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
@@ -154,9 +154,9 @@ window.addEventListener("load", function () {
       }
       // Load bài hát và tổng thời gian của bài hát
       this.renderCurrentSong(this.currentIndex, function () {
-        if (audio.duration) {
+        do {
           totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        }
+        } while (!audio.duration);
       });
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
@@ -181,9 +181,9 @@ window.addEventListener("load", function () {
       } while (currentIndex === this.currentIndex);
       // Load bài hát và tổng thời gian của bài hát
       this.renderCurrentSong(this.currentIndex, function () {
-        if (audio.duration) {
+        do {
           totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        }
+        } while (!audio.duration);
       });
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
@@ -372,9 +372,9 @@ window.addEventListener("load", function () {
           me.highlightSongSelected(index);
           me.scrollToActiveSong();
           me.renderCurrentSong(index, function () {
-            if (audio.duration) {
+            do {
               totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-            }
+            } while (!audio.duration);
           });
           audio.play();
         }
@@ -404,9 +404,9 @@ window.addEventListener("load", function () {
       let me = this;
       this.renderListSong();
       this.renderCurrentSong(this.currentIndex, function () {
-        if (audio.duration) {
+        do {
           totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-        }
+        } while (!audio.duration);
       });
       this.handleEvent();
     },
