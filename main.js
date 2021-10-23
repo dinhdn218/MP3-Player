@@ -94,9 +94,26 @@ window.addEventListener("load", function () {
 
       // Cập nhật đường dẫn bài hát vào audio tag
       audio.setAttribute("src", song.path);
-      setTimeout(function () {
+      audio.addEventListener("loadedmetadata", function () {
         totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
-      }, 200);
+      });
+
+      // Cập nhật đường dẫn bài hát vào audio tag
+      // let promise = new Promise(function (resolve, reject) {
+      //   if (audio.getAttribute("src")) {
+      //     resolve();
+      //   } else {
+      //     reject();
+      //   }
+      // });
+
+      // promise
+      //   .then(function () {
+      //     totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+      //   })
+      //   .catch(function () {
+      //     totalTimeCurrentSong.textContent = `Lỗi hiển thị`;
+      //   });
     },
 
     // Hàm định dạng lại thời gian theo định dạng mm:ss
