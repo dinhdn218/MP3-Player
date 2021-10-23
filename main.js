@@ -94,7 +94,7 @@ window.addEventListener("load", function () {
       // Cập nhật đường dẫn bài hát vào audio tag
       audio.src = song.path;
       // Callback để lấy được audio.duration của bài hát hiện tại, hiển thị khi chương trình vừa bắt đầu
-      setTimeout(callback, 1000);
+      setTimeout(callback, 100);
     },
 
     // Hàm định dạng lại thời gian theo định dạng mm:ss
@@ -127,7 +127,9 @@ window.addEventListener("load", function () {
       }
       // Load bài hát và tổng thời gian của bài hát
       this.renderCurrentSong(this.currentIndex, function () {
-        totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        if (audio.duration) {
+          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        }
       });
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
@@ -152,7 +154,9 @@ window.addEventListener("load", function () {
       }
       // Load bài hát và tổng thời gian của bài hát
       this.renderCurrentSong(this.currentIndex, function () {
-        totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        if (audio.duration) {
+          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        }
       });
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
@@ -177,7 +181,9 @@ window.addEventListener("load", function () {
       } while (currentIndex === this.currentIndex);
       // Load bài hát và tổng thời gian của bài hát
       this.renderCurrentSong(this.currentIndex, function () {
-        totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        if (audio.duration) {
+          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        }
       });
       // Scroll đến bài hát đang phát
       this.scrollToActiveSong();
@@ -366,7 +372,9 @@ window.addEventListener("load", function () {
           me.highlightSongSelected(index);
           me.scrollToActiveSong();
           me.renderCurrentSong(index, function () {
-            totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+            if (audio.duration) {
+              totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+            }
           });
           audio.play();
         }
@@ -396,7 +404,9 @@ window.addEventListener("load", function () {
       let me = this;
       this.renderListSong();
       this.renderCurrentSong(this.currentIndex, function () {
-        totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        if (audio.duration) {
+          totalTimeCurrentSong.textContent = me.formatTime(audio.duration);
+        }
       });
       this.handleEvent();
     },
