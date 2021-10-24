@@ -29,22 +29,16 @@ window.addEventListener("load", function () {
         path: "./playlist/ThuanTheoYTroi.mp3",
       },
       {
-        name: "Không phải em đúng không",
-        artist: "Dương hoàng yến, Bùi anh tuấn",
-        image: "./images/KhongPhaiEmDungKhong.jpg",
-        path: "./playlist/KhongPhaiEmDungKhong.mp3",
-      },
-      {
         name: "Tình nào không như tình đầu",
         artist: "Trung Quân Idol",
         image: "./images/TinhNaoKhongNhuTinhDau.jpg",
         path: "./playlist/TinhNaoKhongNhuTinhDau.mp3",
       },
       {
-        name: "Hà nội mùa lá bay",
-        artist: "Bùi anh tuấn, Dương trường giang",
-        image: "./images/HaNoiMuaLaBay.jpg",
-        path: "./playlist/HaNoiMuaLaBay.mp3",
+        name: "Không phải em đúng không",
+        artist: "Dương hoàng yến, Bùi anh tuấn",
+        image: "./images/KhongPhaiEmDungKhong.jpg",
+        path: "./playlist/KhongPhaiEmDungKhong.mp3",
       },
       {
         name: "Cố gắng vô hình",
@@ -71,10 +65,10 @@ window.addEventListener("load", function () {
         path: "./playlist/ChuaBaoGioEmQuen.mp3",
       },
       {
-        name: "Phố không mùa",
+        name: "Hà nội mùa lá bay",
         artist: "Bùi anh tuấn, Dương trường giang",
-        image: "./images/PhoKhongMua.jpg",
-        path: "./playlist/PhoKhongMua.mp3",
+        image: "./images/HaNoiMuaLaBay.jpg",
+        path: "./playlist/HaNoiMuaLaBay.mp3",
       },
     ],
 
@@ -225,6 +219,14 @@ window.addEventListener("load", function () {
       return tooltip;
     },
 
+    // Hàm xóa tooltip
+    removeTooltip: function () {
+      const tooltip = player.querySelector(".tooltip");
+      if (tooltip) {
+        tooltip.parentNode.removeChild(tooltip);
+      }
+    },
+
     // Hàm lắng nghe các sự kiện của DOM
     handleEvent: function () {
       const me = this;
@@ -337,10 +339,8 @@ window.addEventListener("load", function () {
 
       // Lắng nghe sự kiện di chuột ra khỏi nút phát lại
       repeatBtn.addEventListener("mouseleave", function () {
-        const tooltip = player.querySelector(".tooltip");
-        if (tooltip) {
-          tooltip.parentNode.removeChild(tooltip);
-        }
+        // Xóa tooltip
+        me.removeTooltip();
       });
 
       // Lắng nghe sự kiện click vào nút phát ngẫu nhiên bài hát
@@ -366,19 +366,18 @@ window.addEventListener("load", function () {
 
       // Lắng nghe sự kiện di chuột ra khỏi nút random
       randomBtn.addEventListener("mouseleave", function () {
-        const tooltip = player.querySelector(".tooltip");
-        if (tooltip) {
-          tooltip.parentNode.removeChild(tooltip);
-        }
+        // Xóa tooltip
+        me.removeTooltip();
       });
 
       // Lắng nghe sự kiện chọn bài hát trong danh sách phát
       songList.addEventListener("click", function (e) {
         if (e.target.matches(".song-item")) {
           const index = e.target.dataset.index;
-          me.highlightSongSelected(index);
+          me.currentIndex = index;
+          me.highlightSongSelected(me.currentIndex);
           me.scrollToActiveSong();
-          me.renderCurrentSong(index);
+          me.renderCurrentSong(me.currentIndex);
           audio.play();
         }
       });
